@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="index, follow"><title>江苏省信息技术合格性考试自制攻略 • Bill Ma's Blog(smarter....)</title><meta name="description" content="江苏省信息技术合格性考试自制攻略 - BillMa"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="https://unpkg.com/nanoreset@3.0.1/nanoreset.min.css"><link rel="stylesheet" href="/css/theme.css"><link rel="search" type="application/opensearchdescription+xml" href="/atom.xml" title="Bill Ma's Blog(smarter....)"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Bill Ma's Blog(smarter....)" type="application/atom+xml">
+</head><body><div class="wrap" id="barba-wrapper"><header><h1 class="branding"><a href="/" title="Bill Ma's Blog(smarter....)"><img class="logo-image" src="/logo.svg" alt="logo"></a></h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link no-barba" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link no-barba" href="/about" target="_self">ABOUT</a></li><li class="nav-list-item"><a class="nav-list-link no-barba" href="/archives" target="_self">ARCHIVES</a></li><li class="nav-list-item"></ul></header><div class="barba-container"><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">江苏省信息技术合格性考试自制攻略</h1><div class="post-info"><a></a>2021-12-19</div><div class="post-content"><h2 id="1-进制转换"><a href="#1-进制转换" class="headerlink" title="1.进制转换"></a>1.进制转换</h2><h3 id="标准算法"><a href="#标准算法" class="headerlink" title="标准算法"></a>标准算法</h3><p>十进制—&gt;二进制</p>
+<p>对于整数部分，用被除数反复除以2，除第一次外，每次除以2均取前一次商的整数部分作被除数并依次记下每次的余数。另外，所得到的商的最后一位余数是所求二进制数的最高位。</p>
+<p>对于小数部分，采用连续乘以基数2，并依次取出的整数部分，直至结果的小数部分为0为止。故该法称“乘基取整法”。</p>
+<p>给你一个十进制，比如：6，如果将它转换成二进制数呢？</p>
+<p>10进制数转换成二进制数，这是一个连续除以2的过程：</p>
+<p>把要转换的数，除以2，得到商和余数，</p>
+<p>将商继续除以2，直到商为0。最后将所有余数倒序排列，得到数就是转换结果。</p>
+<p>听起来有些糊涂？结合例子来说明。比如要转换6为二进制数。</p>
+<p>“把要转换的数，除以2，得到商和余数”。</p>
+<p>那么：要转换的数是6， 6 ÷ 2，得到商是3，余数是0。<br>“将商继续除以2,直到商为0……”</p>
+<p>现在商是3，还不是0，所以继续除以2。</p>
+<p>那就： 3 ÷ 2, 得到商是1,余数是1。</p>
+<p>“将商继续除以2，直到商为0……”</p>
+<p>现在商是1，还不是0，所以继续除以2。</p>
+<p>那就： 1 ÷ 2, 得到商是0，余数是1</p>
+<p>“将商继续除以2，直到商为0……最后将所有余数倒序排列”</p>
+<p>好极！现在商已经是0。</p>
+<p>我们三次计算依次得到余数分别是：0、1、1，将所有余数倒序排列，那就是：110了！</p>
+<p>6转换成二进制，结果是110。</p>
+<p>二进制数转换为十进制数</p>
+<p>二进制数第0位的权值是2的0次方，第1位的权值是2的1次方……</p>
+<p>所以，设有一个二进制数：0110 0100，转换为10进制为：</p>
+<p>下面是竖式：</p>
+<p>0110 0100 换算成十进制</p>
+<p>从右往左开始换算</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第0位 0 * 2^0 = 0</span><br><span class="line">第1位 0 * 2^1 = 0</span><br><span class="line">第2位 1 * 2^2 = 4</span><br><span class="line">第3位 0 * 2^3 = 0</span><br><span class="line">第4位 0 * 2^4 = 0</span><br><span class="line">第5位 1 * 2^5 = 32</span><br><span class="line">第6位 1 * 2^6 = 64</span><br><span class="line">第7位 0 * 2^7 = 0</span><br></pre></td></tr></table></figure>
+
+<p>得到01100100(2)&#x3D;4+32+64</p>
+<h3 id="偷懒算法"><a href="#偷懒算法" class="headerlink" title="偷懒算法"></a>偷懒算法</h3><p>打开计算器（在开始里面直接搜计算器），打开后点击左上角的选项，在里面选择“程序员”，选择原始进制，输入数字，然后<strong>不要点等号</strong>，直接选择<strong>你要转换的进制</strong>即可。</p>
+<h2 id="2-IP"><a href="#2-IP" class="headerlink" title="2.IP"></a>2.IP</h2><p>Pv4：本质上是四个八位二进制数，为了方便表达改为四个十进制数 ，以 . 隔开，每一个数字取 0-255−255，例如 12.34.56.78。</p>
+<p>IPv6：八个十六进制数，以 : 隔开，主要是防止 IPv4 不够用。</p>
+<h2 id="3-缩写大全"><a href="#3-缩写大全" class="headerlink" title="3.缩写大全"></a>3.缩写大全</h2><p>局域网：LAN（Local Area Network），小范围的网络，1km 以内传输效率极高，结构简单。</p>
+<p>城域网：MAN（Metropolitan Area Network），数千米至数十千米内。</p>
+<p>广域网：WAN（Wide Area Network），数十千米至数千千米以上。</p>
+<p>随机存储器：RAM（Random Access Memory）。</p>
+<p>只读存储器：ROM（Read Only Memory）。</p>
+<p>万维网：WWW（World Wide Web）。</p>
+<p>文件传输协议：FTP（File Transfer Protocol）。</p>
+<p>简单邮件传输协议：SMTP（Simple Mail Transfer Protocol）。</p>
+<p>对等网络：P2P（peer-t(w)o-peer），音译。</p>
+<p>邮局协议第三版 ：POP3（Post Office Protocol - Version 3）。</p>
+<p>传输控制协议：TCP（Transmission Control Protocol）。</p>
+<p>用户数据报协议：UDP（User Datagram Protocol）。</p>
+<p>交互邮件访问协议：IMAP（Internet Message Access Protocol）。</p>
+<p>超文本传输协议：HTTP（S）（Hyper Text Transfer Prtcl（over Securesocket ayer）），带 “S”的为增加了传输加密和身份认证。</p>
+<h2 id="4-录入程序"><a href="#4-录入程序" class="headerlink" title="4.录入程序"></a>4.录入程序</h2><p>有时候题目会给你一个程序，让你选出答案。这时候可以录入到Python中进行模拟，可是考试系统是全屏的，无法直接录入，怎么办呢？</p>
+<h3 id="1-打开桌面上的Python-IDLE，打开后CTRL-N新建一个文件。"><a href="#1-打开桌面上的Python-IDLE，打开后CTRL-N新建一个文件。" class="headerlink" title="1.打开桌面上的Python IDLE，打开后CTRL+N新建一个文件。"></a>1.打开桌面上的Python IDLE，打开后CTRL+N新建一个文件。</h3><h3 id="2-打开考试系统"><a href="#2-打开考试系统" class="headerlink" title="2.打开考试系统"></a>2.打开考试系统</h3><p>注意这里：点开考试系统全屏后<strong>按住键盘上的Alt按键不要松开</strong>，轻点一下<strong>tab按键</strong>，会出现程序选择的界面。<strong>始终不要松开ALT</strong>，轻点tab进行选择，直到选择到Python界面，松开alt，你就会发现Python已经浮在了考试系统的上面，然后录入程序即可。</p>
+<p><em><strong>注意：如果程序最后没有print函数，请自行添加，否则计算结果不会出来的</strong></em>。</p>
+<h2 id="5-音频大小"><a href="#5-音频大小" class="headerlink" title="5.音频大小"></a>5.音频大小</h2><p>声卡对声音的处理质量可以用三个基本参数来衡量，即采样频率、采样位数和声道数。</p>
+<p>采样频率是指单位时间内的采样次数。采样频率越大，采样点之间的间隔就越小，数字化后得到的声音就越逼真，但相应的数据量就越大。</p>
+<p>采样位数是记录每次采样值数值大小的位数。采样位数通常有8bits或16bits两种，采样位数越大，所能记录声音的变化度就越细腻，相应的数据量就越大。</p>
+<p>声道数是指处理的声音是单声道还是立体声。单声道在声音处理过程中只有单数据流，而立体声则需要左、右声道的两个数据流。显然，立体声的效果要好，但相应的数据量要比单声道的数据量加倍。</p>
+<p>不经过压缩，声音数据量的计算公式为：</p>
+<p>数据量（byte）&#x3D;（采样频率（Hz）×采样位数（bit）×声道数）&#x2F;8</p>
+<p>（其中，单声道的声道数为1，立体声的声道数为2）</p>
+<p>例子：请计算对于5分钟双声道、16位采样位数、44.1kHz采样频率声音的不压缩数据量是多少？</p>
+<p>根据公式：数据量&#x3D;（采样频率×采样位数×声道数×时间）&#x2F;8 Byte(比特)</p>
+<p>得，数据量（MB）&#x3D;[44.1 × 1000 × 16×2×(5×60)] &#x2F;(8×1024×1024)&#x3D;50.47MB</p>
+<p>计算时要注意几个单位的换算细节：</p>
+<p>时间单位换算：1分&#x3D;60秒</p>
+<p>采样频率单位换算：1kHz&#x3D;1000Hz</p>
+<p>数据量单位换算：1MB&#x3D;1024KB&#x3D;1024×1024Byte&#x3D;1048576Byte</p>
+<h2 id="6-图片存贮"><a href="#6-图片存贮" class="headerlink" title="6.图片存贮"></a>6.图片存贮</h2><p>大小&#x3D;分辨率*位深&#x2F;8</p>
+<p>分辨率&#x3D;宽 x 高（如：1024 x 768,640 x 480）</p>
+<p>位深：如24位，16位，8位</p>
+<p>&#x2F;8计算的是字节数。</p>
+<p>例如：</p>
+<p>一幅图像分辨率：1024*768,24位，则其大小计算如下：</p>
+<p>大小&#x3D;1024*768824&#x2F;8&#x3D;2359296byte&#x3D;2304KB</p>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2022/02/06/COVID-19-zbzydjq/">prev</a><a class="next" href="/2021/12/04/1202ccf/">next</a></div><div class="copyright"><p>&copy; 2022 <a href="https://q.billma.top">BillMa</a><br>Powered by <a href="https://hexo.io/" rel="noreferrer" target="_blank">Hexo</a></p></div></footer></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
+    Barba.Pjax.start()
+})</script></body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="index, follow"><title>U盘里的文件夹突然变成了“应用程序”后缀名怎么办？ • Bill Ma's Blog(smarter....)</title><meta name="description" content="U盘里的文件夹突然变成了“应用程序”后缀名怎么办？ - BillMa"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="https://unpkg.com/nanoreset@3.0.1/nanoreset.min.css"><link rel="stylesheet" href="/css/theme.css"><link rel="search" type="application/opensearchdescription+xml" href="/atom.xml" title="Bill Ma's Blog(smarter....)"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Bill Ma's Blog(smarter....)" type="application/atom+xml">
+</head><body><div class="wrap" id="barba-wrapper"><header><h1 class="branding"><a href="/" title="Bill Ma's Blog(smarter....)"><img class="logo-image" src="/logo.svg" alt="logo"></a></h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link no-barba" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link no-barba" href="/about" target="_self">ABOUT</a></li><li class="nav-list-item"><a class="nav-list-link no-barba" href="/archives" target="_self">ARCHIVES</a></li><li class="nav-list-item"></ul></header><div class="barba-container"><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">U盘里的文件夹突然变成了“应用程序”后缀名怎么办？</h1><div class="post-info"><a></a>2021-11-12</div><div class="post-content"><p>最近学校电脑有很多老师喜欢使用U盘拷贝文件，但是我发现，许多老师的U盘都被感染上了病毒。这种病毒很常见，感染力极强，而且甚至像360系软件等等根本无法查杀。那么，这种病毒如何查杀呢？</p>
+<h2 id="1-病毒介绍"><a href="#1-病毒介绍" class="headerlink" title="1.病毒介绍"></a>1.病毒介绍</h2><p>文件夹EXE病毒，学名Worm.Win32.AutoRun.soq。这种病毒只会运行在win32系统上。当你把你的U盘插入到一台电脑后，突然发现U盘内生成了以文件夹名字命名的文件，扩展名为exe，并且它们的图标跟windows默认的文件夹图标是一样的，很具有迷惑性。当你双击这个被伪装的exe文件后，木马自动启动并在电脑内下毒。</p>
+<h2 id="2-运作原理"><a href="#2-运作原理" class="headerlink" title="2.运作原理"></a>2.运作原理</h2><p><strong>简而言之，这个病毒就是将你原有的文件夹隐藏起来，然后制造一个exe文件伪装成你的文件夹，其实这个exe就是病毒。在“组织”中，勾选“显示被隐藏的文件和文件夹”，并且取消勾选“隐藏被保护的文件夹”即可看到你的文件夹。</strong></p>
+<p><em><strong>完整病毒机理：</strong></em></p>
+<p>病毒运行后会释放以下文件：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">com.run </span><br><span class="line">dp1.fne </span><br><span class="line">eAPI.fne </span><br><span class="line">internet.fne</span><br><span class="line">krnln.fnr</span><br><span class="line">og.dll</span><br><span class="line">og.edt </span><br><span class="line">RegEx.fnr</span><br><span class="line">fne </span><br><span class="line">spec.fne </span><br><span class="line">ul.dll</span><br><span class="line">XP-<span class="number">290</span>F2C69.EXE（后<span class="number">8</span>位随机）</span><br></pre></td></tr></table></figure>
+
+<p>这些文件会被复制到系统盘的C:\WINDOWS\system32里面</p>
+<p>随后，新增以下注册表项，以达到病毒随系统启动而自启动的目的。</p>
+<p><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code></p>
+<p>注册表值：XP-290F2C69（后8位随机）</p>
+<p>类型：REG_SZ</p>
+<p>值：C:\WINDOWS\system32\XP-290F2C69.EXE（后8位随机）</p>
+<p>添加以下启动项，实现病毒自启动：<code>“C:\Documents and Settings\Administrator\「开始」菜单\程序\启动” 里的“　.lnk”</code>指向病毒文件。</p>
+<p>下载病毒文件： （16,896 字节）保存为以下文件，并且运行它们：<br><code>%Windir%\System32\winvcreg.exe</code></p>
+<p><code>%Windir%\System32\2080.EXE (名称随机)</code></p>
+<p>然后，被感染的电脑接入移动磁盘后，病毒会遍历移动磁盘根目录下的文件夹，衍生自身到移动磁盘根目录下，更名为检测到的文件夹名称，修改原文件夹属性为隐藏，使用户在其他计算机使用移动磁盘打开其文件夹时运行病毒， 以达到病毒随移动磁盘传播的目的。</p>
+<h2 id="3-解决办法："><a href="#3-解决办法：" class="headerlink" title="3.解决办法："></a>3.解决办法：</h2><h3 id="1-杀毒软件"><a href="#1-杀毒软件" class="headerlink" title="1.杀毒软件"></a>1.杀毒软件</h3><p>360并不能查清此病毒，建议使用毒霸或者电脑管家查杀。注意，该方法只能清除病毒，但不能显示被隐藏的文件夹。</p>
+<h3 id="2-手工清除"><a href="#2-手工清除" class="headerlink" title="2.手工清除"></a>2.手工清除</h3><p>1、结束病毒进程。打开任务管理器，选择进程，结束进程XP-290F2C69.EXE（后8位随机），winvcreg.exe，2080.exe（随机名）。</p>
+<p>2、删除病毒在System32生成的以下文件：</p>
+<p><code>com.run dp1.fne eAPI.fne internet.fne krnln.fnr og.dll og.edt RegEx.fnr fne spec.fne ul.dll XP-290F2C69.EXE winvcreg.exe 2080.EXE（随机名）</code></p>
+<p>3、删除病毒的启动项，删除以下启动项：</p>
+<p><code>“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run”里的XP-290F2C69.EXE（后8位随机）</code></p>
+<p><code>“C:\Documents and Settings\Administrator\「开始」菜单\程序\启动” 里的“　.lnk”</code></p>
+<p>4、清除你的点击“开始”—输入“cmd” ，进入命令提示符，然后进入你U盘所在的根目录，具体操作如下，比如你的U盘盘符位G(即你的U盘在G盘），那么依次运行如下命令（第一行的“G:”为你的U盘盘符）：</p>
+<p><strong>注意：第二句话会删除根目录下包括非病毒在内的所有exe文件，谨慎使用，可以仅使用1、3句话然后手动删除exe文件夹</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /d G:</span><br><span class="line"><span class="keyword">for</span> /f &quot;delims=&quot; %a <span class="keyword">in</span> (&#x27;<span class="built_in">dir</span> /b /ad&#x27;) <span class="keyword">do</span> (<span class="built_in">del</span> /a /f /q &quot;%a.exe&quot;) </span><br><span class="line"><span class="keyword">for</span> /f &quot;delims=&quot; %a <span class="keyword">in</span> (&#x27;<span class="built_in">dir</span> /b /adh&#x27;) <span class="keyword">do</span> (<span class="built_in">attrib</span> -s -h -r &quot;%a&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>这一步也可以用C++来代替：（不会清除其他文件）</p>
+<p>首先删除你跟目录下所有exe文件夹，随后使用此代码：</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;windows.h&gt;
+
+void listFiles(const char * dir);
+
+int main()
+&#123;
+    using namespace std;
+    char dir[100];
+    cout &lt;&lt; &quot;Enter a directory (ends with \&#39;\\\&#39;): &quot;;
+    cin.getline(dir, 100);
+    strcat(dir, &quot;*.*&quot;);   
+    listFiles(dir);
+    return 0;
+&#125;
+
+void listFiles(const char * dir)
+&#123;
+    using namespace std;
+    HANDLE hFind;
+    WIN32_FIND_DATA findData;
+    LARGE_INTEGER size;
+    hFind = FindFirstFile(dir, &amp;findData);
+    if (hFind == INVALID_HANDLE_VALUE)
+    &#123;
+        cout &lt;&lt; &quot;Failed to find first file!\n&quot;;
+        return;
+    &#125;
+    do
+    &#123;
+        if (strcmp(findData.cFileName, &quot;.&quot;) == 0 || strcmp(findData.cFileName, &quot;..&quot;) == 0)
+            continue;
+        if (findData.dwFileAttributes &amp; FILE_ATTRIBUTE_DIRECTORY)  
+        &#123;
+            cout &lt;&lt; findData.cFileName &lt;&lt; &quot;\t&lt;dir&gt;\n&quot;;
+             string str=&quot;attrib \&quot;&quot;;
+            str.append(findData.cFileName);
+            str.append(&quot;\&quot; -s -h&quot;);
+            system(str.c_str());
+            
+        &#125;
+        else
+        &#123;
+            size.LowPart = findData.nFileSizeLow;
+            size.HighPart = findData.nFileSizeHigh;
+            cout &lt;&lt; findData.cFileName &lt;&lt; &quot;\t&quot; &lt;&lt; size.QuadPart &lt;&lt; &quot; bytes\n&quot;;
+        &#125;
+    &#125; while (FindNextFile(hFind, &amp;findData));
+    cout &lt;&lt; &quot;Done!\n&quot;;
+    system(&quot;Pause&quot;);
+&#125;
+
+输入你U盘所在盘符（例如 G:\) （\要反斜杠）即可
+</code></pre>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2021/12/04/1202ccf/">prev</a><a class="next" href="/2021/10/30/zz_confuzi/">next</a></div><div class="copyright"><p>&copy; 2022 <a href="https://q.billma.top">BillMa</a><br>Powered by <a href="https://hexo.io/" rel="noreferrer" target="_blank">Hexo</a></p></div></footer></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
+    Barba.Pjax.start()
+})</script></body></html>
